@@ -1,0 +1,90 @@
+GET http://localhost:8080 HTTP/1.1
+
+###
+GET http://localhost:8080/campaign HTTP/1.1
+
+###
+GET http://localhost:8080/encounter HTTP/1.1
+
+###
+GET http://localhost:8080/campaign/67a6d7e982d27902d799493a HTTP/1.1
+
+###
+GET http://localhost:8080/encounter/67a6d80b82d27902d799493e HTTP/1.1
+
+###
+POST http://localhost:8080/campaign HTTP/1.1
+Content-type: application/json
+
+{
+    "title":"Super Adventure",
+    "dungeonMaster":"65d7b8a9e0f1c23456789012",
+    "players":["Wylee","Sierra","Alec"],
+    "startDate":"2025-02-06",
+    "description":"It's super duper",
+    "encounters":[],
+    "notes":"The party forgot to turn off the oven"
+}
+
+###
+POST http://localhost:8080/encounter HTTP/1.1
+Content-type: application/json
+
+{
+    "campaign": "65f1a2b3c4d5e6f7890a1234",
+    "name": "Kobold Scouts",
+    "enemies": [
+        { "name": "Kobold Scout", "hp": 17, "abilities": ["Stealth", "Shortbow"] },
+        { "name": "Kobold Bomber", "hp": 15, "abilities": ["Bomb Throw", "Quick Retreat"] }
+    ],
+    "difficulty": "Easy",
+    "location": "Crystal Cavern",
+    "rewards": "20 Gold, 1 Bag of Gun Powder",
+    "notes": "The Bomber is hiding on an outcropping above."
+}
+
+###
+GET https://ddcm.onrender.com HTTP/1.1
+
+###
+GET https://ddcm.onrender.com/campaign HTTP/1.1
+
+###
+GET https://ddcm.onrender.com/encounter HTTP/1.1
+
+###
+GET https://ddcm.onrender.com/campaign/67a6d7e982d27902d799493a HTTP/1.1
+
+###
+GET https://ddcm.onrender.com/encounter/67a6d80b82d27902d799493e HTTP/1.1
+
+###
+POST https://ddcm.onrender.com/campaign HTTP/1.1
+
+{
+    "title": "Super Adventure",
+    "dungeonMaster": "65d7b8a9e0f1c23456789012",
+    "players": ["Wylee","Sierra","Alec"],
+    "startDate": "2025-02-06",
+    "description": "It's super duper",
+    "encounters": [],
+    "notes": "The party forgot to turn off the oven"
+};
+
+###
+POST https://ddcm.onrender.com/encounter HTTP/1.1
+
+{
+    "campaign": "65f1a2b3c4d5e6f7890a1234",
+    "name": "Kobold Scouts",
+    "enemies": [
+        { "name": "Kobold Scout", "hp": 17, "abilities": ["Stealth", "Shortbow"] },
+        { "name": "Kobold Bomber", "hp": 15, "abilities": ["Bomb Throw", "Quick Retreat"] }
+    ],
+    "difficulty": "Easy",
+    "location": "Crystal Cavern",
+    "rewards": "20 Gold, 1 Bag of Gun Powder",
+    "notes": "The Bomber is hiding on an outcropping above."
+}
+
+###
