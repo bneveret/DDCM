@@ -1,8 +1,11 @@
 const mongodb = require('../db/connect');
 const { ObjectId } = require('mongodb');
 
-// Get all campaigns
+// Get a single campaign by ID
 const getSingle = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid campaign id to find a campaign.');
+  }
     try {
       const userId = new ObjectId(req.params.id);
     const result = await mongodb.getDb().db().collection('campaigns').find({ _id: userId });
@@ -15,7 +18,7 @@ const getSingle = async (req, res) => {
   }
 };
   
-  // Get a single campaign by ID
+  // Get all campaigns
   const getAll = async (req, res) => {
     try {
       const result = await mongodb.getDb().db().collection('campaigns').find();
@@ -57,6 +60,9 @@ const getSingle = async (req, res) => {
   
   // Update a campaign by ID
   const updateCampaign = async (req, res) => {
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid campaign id to update a campaign.');
+    }
     try{
     const userId = new ObjectId(req.params.id);
     const campaign = {
@@ -86,6 +92,9 @@ const getSingle = async (req, res) => {
   
   //Delete a campaign by ID
   const deleteCampaign = async (req, res) => {
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid campaign id to delete a campaign.');
+    }
     try{
     const userId = new ObjectId(req.params.id);
     const response = await mongodb
