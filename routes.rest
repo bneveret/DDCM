@@ -121,10 +121,10 @@ Content-type: application/json
 }
 
 ###
-DELETE https://ddcm.onrender.com/campaign/67a6d7e982d27902d799493b HTTP/1.1
+DELETE https://ddcm.onrender.com/campaign/67ae7312e9d6bd7622b1fd85 HTTP/1.1
 
 ###
-DELETE https://ddcm.onrender.com/campaign/67a6d80b82d27902d799493f HTTP/1.1
+DELETE https://ddcm.onrender.com/encounter/65f1a2b3c4d5e6f7890a1234 HTTP/1.1
 
 ###
 POST https://ddcm.onrender.com/campaign HTTP/1.1
