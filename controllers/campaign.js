@@ -1,6 +1,6 @@
 const mongodb = require('../db/connect');
 const { ObjectId } = require('mongodb');
-const { campaignSchema } = require('../middleware/validation');
+const { campaignSchema } = require('../middleware/validation.js');
 
 // Get a single campaign by ID
 const getSingle = async (req, res) => {

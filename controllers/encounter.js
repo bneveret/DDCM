@@ -1,6 +1,6 @@
 const mongodb = require('../db/connect');
 const { ObjectId } = require('mongodb');
-const { encounterSchema } = require('../middleware/validation');
+const { encounterSchema } = require('../middleware/validation.js');
 
 // Get a single encounter by ID
 const getSingle = async (req, res) => {

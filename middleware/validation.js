@@ -55,4 +55,4 @@ const encounterSchema = Joi.object({
     notes: Joi.string().max(1000).allow('')
   });
 
-module.exports = { validateObjectId, campaignSchema, encounterSchema };
+module.exports = { campaignSchema, encounterSchema }, validateObjectId;
