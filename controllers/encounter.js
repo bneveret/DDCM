@@ -3,9 +3,6 @@ const { ObjectId } = require('mongodb');
 
 // Get a single encounter by ID
 const getSingle = async (req, res) => {
-  if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid encounter id to find an encounter.');
-  }
     try {
       const userId = new ObjectId(req.params.id);
     const result = await mongodb.getDb().db().collection('encounters').find({ _id: userId });
@@ -60,9 +57,6 @@ const getSingle = async (req, res) => {
   
   // Update an encounter by ID
   const updateEncounter = async (req, res) => {
-    if (!ObjectId.isValid(req.params.id)) {
-      res.status(400).json('Must use a valid encounter id to update an encounter.');
-    }
     try{
     const userId = new ObjectId(req.params.id);
     const encounter = {
@@ -92,9 +86,6 @@ const getSingle = async (req, res) => {
   
   //Delete an encounter by ID
   const deleteEncounter = async (req, res) => {
-    if (!ObjectId.isValid(req.params.id)) {
-      res.status(400).json('Must use a valid encounter id to delete an encounter.');
-    }
     try{
     const userId = new ObjectId(req.params.id);
     const response = await mongodb
