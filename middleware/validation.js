@@ -1,4 +1,25 @@
 const Joi = require('joi');
+const { ObjectId } = require('mongodb');
+
+const validateObjectId = (req, res, next) => {
+  const schema = Joi.object({
+    id: Joi.string()
+      .custom((value, helpers) => {
+        if (!ObjectId.isValid(value)) {
+          return helpers.error('any.invalid');
+        }
+        return value;
+      }, 'ObjectId validation')
+      .required(),
+  });
+
+  const { error } = schema.validate(req.params);
+  if (error) {
+    return res.status(400).json({ message: 'Invalid ID format' });
+  }
+
+  next();
+};
 
 const campaignSchema = Joi.object({
   title: Joi.string().min(3).max(100).required(),
@@ -34,4 +55,4 @@ const encounterSchema = Joi.object({
     notes: Joi.string().max(1000).allow('')
   });
 
-module.exports = { campaignSchema, encounterSchema };
+module.exports = { validateObjectId, campaignSchema, encounterSchema };
