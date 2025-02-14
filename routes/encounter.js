@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const encounterController = require('../controllers/encounter');
-const validateObjectId = require('../middleware/validation.js');
+const { validateObjectId } = require('../middleware/validation.js');
 
 router.get('/', encounterController.getAll);
 router.get('/:id', validateObjectId, encounterController.getSingle);
