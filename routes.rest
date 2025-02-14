@@ -98,7 +98,7 @@ Content-type: application/json
     "dungeonMaster": "65d7b8a9e0f1c23456789012",
     "players": ["Wylee","Kyle","Alec"],
     "startDate": "2025-02-06",
-    "description": "It's stupendous",
+    "description": "It's fantastic",
     "encounters": [],
     "notes": "The party forgot to turn off the oven"
 }
@@ -133,7 +133,7 @@ Content-type: application/json
 {
     "title": "",
     "dungeonMaster": "65d7b8a9e0f1c23456789012",
-    "players": ["Wylee","Sierra","Alec"],
+    "players": [],
     "startDate": "2025-02-06",
     "description": "It's super duper",
     "encounters": [],
@@ -146,7 +146,7 @@ Content-type: application/json
 
 {
     "campaign": "65f1a2b3c4d5e6f7890a1234",
-    "name": "",
+    "name": "1",
     "enemies": [
         { "name": "Kobold Scout", "hp": 17, "abilities": ["Stealth", "Shortbow"] },
         { "name": "Kobold Bomber", "hp": 15, "abilities": ["Bomb Throw", "Quick Retreat"] }

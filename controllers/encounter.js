@@ -1,5 +1,6 @@
 const mongodb = require('../db/connect');
 const { ObjectId } = require('mongodb');
+const { encounterSchema } = require('../validation.js');
 
 // Get a single encounter by ID
 const getSingle = async (req, res) => {
@@ -31,6 +32,11 @@ const getSingle = async (req, res) => {
   // Create a new encounter
   const createEncounter = async (req, res) => {
     try{
+      const { error } = encounterSchema.validate(req.body, { abortEarly: false });
+      if (error) {
+      return res.status(400).json({ errors: error.details.map((err) => err.message) });
+    }
+
     const encounter = {
       campaign: req.body.campaign,
       name: req.body.name,
@@ -58,6 +64,11 @@ const getSingle = async (req, res) => {
   // Update an encounter by ID
   const updateEncounter = async (req, res) => {
     try{
+      const { error } = encounterSchema.validate(req.body, { abortEarly: false });
+      if (error) {
+      return res.status(400).json({ errors: error.details.map((err) => err.message) });
+    }
+
     const userId = new ObjectId(req.params.id);
     const encounter = {
         campaign: req.body.campaign,

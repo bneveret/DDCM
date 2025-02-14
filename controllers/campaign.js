@@ -1,5 +1,6 @@
 const mongodb = require('../db/connect');
 const { ObjectId } = require('mongodb');
+const { campaignSchema } = require('../validation.js');
 
 // Get a single campaign by ID
 const getSingle = async (req, res) => {
@@ -31,6 +32,11 @@ const getSingle = async (req, res) => {
   // Create a new campaign
   const createCampaign = async (req, res) => {
     try{
+      const { error } = campaignSchema.validate(req.body, { abortEarly: false });
+      if (error) {
+      return res.status(400).json({ errors: error.details.map((err) => err.message) });
+    }
+
     const campaign = {
       title: req.body.title,
       dungeonMaster: req.body.dungeonMaster,
@@ -58,6 +64,11 @@ const getSingle = async (req, res) => {
   // Update a campaign by ID
   const updateCampaign = async (req, res) => {
     try{
+      const { error } = campaignSchema.validate(req.body, { abortEarly: false });
+      if (error) {
+      return res.status(400).json({ errors: error.details.map((err) => err.message) });
+    }
+
     const userId = new ObjectId(req.params.id);
     const campaign = {
       title: req.body.title,
