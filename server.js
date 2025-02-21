@@ -21,7 +21,17 @@ app
 )
 .use(passport.initialize())
 .use(passport.session())
-.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { explorer: true }))
+.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
+  explorer: true,
+  swaggerOptions: {
+    oauth2RedirectUrl: "https://ddcm.onrender.com/auth/github/callback",
+    oauth: {
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET
+    }
+  }
+}))
+
 .use(bodyParser.json())
 .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
