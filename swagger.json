@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "My API",
-    "description": "Campaign API",
+    "title": "D&D Campaign Manager API",
+    "description": "API for managing campaigns and encounters",
     "version": "1.0.0"
   },
   "host": "ddcm.onrender.com",
@@ -385,5 +385,25 @@
         }
       }
     }
-  }
+  },
+  "components": {
+    "securitySchemes": {
+      "GitHubAuth": {
+        "type": "oauth2",
+        "description": "OAuth2 authentication with GitHub",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://github.com/login/oauth/authorize",
+            "tokenUrl": "https://github.com/login/oauth/access_token",
+            "scopes": {}
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "GitHubAuth": []
+    }
+  ]
 }
