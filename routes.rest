@@ -53,7 +53,7 @@ GET https://ddcm.onrender.com/campaign HTTP/1.1
 GET https://ddcm.onrender.com/encounter HTTP/1.1
 
 ###
-GET https://ddcm.onrender.com/campaign/67a6d7e982d27902d799493a HTTP/1.1
+GET https://ddcm.onrender.com/campaign/invalid HTTP/1.1
 
 ###
 GET https://ddcm.onrender.com/encounter/67a6d80b82d27902d799493e HTTP/1.1
@@ -90,13 +90,13 @@ Content-type: application/json
 }
 
 ###
-PUT https://ddcm.onrender.com/campaign/67a6d7e982d27902d799493a HTTP/1.1
+PUT https://ddcm.onrender.com/campaign/67afc046fea5389592825aef HTTP/1.1
 Content-type: application/json
 
 {
     "title": "Super Adventure",
     "dungeonMaster": "65d7b8a9e0f1c23456789012",
-    "players": ["Wylee","Kyle","Alec"],
+    "players": [],
     "startDate": "2025-02-06",
     "description": "It's fantastic",
     "encounters": [],
@@ -121,7 +121,7 @@ Content-type: application/json
 }
 
 ###
-DELETE https://ddcm.onrender.com/campaign/67ae7312e9d6bd7622b1fd85 HTTP/1.1
+DELETE https://ddcm.onrender.com/campaign/invalid HTTP/1.1
 
 ###
 DELETE https://ddcm.onrender.com/encounter/65f1a2b3c4d5e6f7890a1234 HTTP/1.1
