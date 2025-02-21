@@ -1,6 +1,7 @@
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
 const mongodb = require('../db/connect');
+const { ObjectId } = require('mongodb');
 require('dotenv').config();
 
 passport.use(new GitHubStrategy({
@@ -29,6 +30,10 @@ passport.use(new GitHubStrategy({
 
 passport.serializeUser((user, done) => done(null, user._id));
 passport.deserializeUser(async (id, done) => {
-  const user = await mongodb.getDb().db().collection('users').findOne({ _id: id });
+  try {
+  const user = await mongodb.getDb().db().collection('users').findOne({ _id: new ObjectId(id) });
   done(null, user);
+  } catch (err) {
+    done(err, null);
+  }
 });

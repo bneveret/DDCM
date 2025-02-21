@@ -4,10 +4,23 @@ const mongodb = require('./db/connect');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
+const passport = require('passport');
+const session = require('express-session');
+require('./auth/github');
+
 const port = process.env.PORT || 8080;
 const app = express();
 
 app
+.use(
+  session({
+    secret: 'process.env.SESSION_SECRET',
+    resave: false,
+    saveUninitialized: true,
+  })
+)
+.use(passport.initialize())
+.use(passport.session())
 .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { explorer: true }))
 .use(bodyParser.json())
 .use((req, res, next) => {
