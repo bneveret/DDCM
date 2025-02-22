@@ -7,28 +7,17 @@ const doc = {
   },
   host: 'ddcm.onrender.com',
   schemes: ['https'],
-  components: {
-    securitySchemes: {
-      GitHubAuth: {
-        type: 'oauth2',
-        description: 'OAuth2 authentication with GitHub',
-        flows: {
-          authorizationCode: {
-            authorizationUrl: 'https://github.com/login/oauth/authorize',
-            tokenUrl: 'https://github.com/login/oauth/access_token',
-            scopes: {
-              user: 'Access your GitHub profile'
-            }
-          }
-        }
+  securityDefinitions: {
+    GitHubOAuth: {
+      type: 'oauth2',
+      flow: 'authorizationCode',
+      authorizationUrl: 'https://github.com/login/oauth/authorize',
+      tokenUrl: 'https://github.com/login/oauth/access_token',
+      scopes: {
+        'user:email': 'Access your email address'
       }
     }
-  },
-  security: [
-    {
-      githubOAuth: []
-    }
-  ]
+  }
 };
 
 const outputFile = './swagger.json';
