@@ -16,7 +16,9 @@ const doc = {
           authorizationCode: {
             authorizationUrl: 'https://github.com/login/oauth/authorize',
             tokenUrl: 'https://github.com/login/oauth/access_token',
-            scopes: {}
+            scopes: {
+              user: 'Access your GitHub profile'
+            }
           }
         }
       }
@@ -24,7 +26,7 @@ const doc = {
   },
   security: [
     {
-      GitHubAuth: []
+      githubOAuth: []
     }
   ]
 };
