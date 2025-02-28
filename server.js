@@ -25,10 +25,10 @@ app
   explorer: true,
   swaggerOptions: {
     oauth2RedirectUrl: "https://ddcm.onrender.com/auth/github/callback",
-    oauth: {
+    initOauth: {
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      usePkceWithAuthorizationCodeGrant: true
+      appName: 'Dungeons and Dragons Campaign Manager'
     }
   }
 }))

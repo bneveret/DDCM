@@ -7,14 +7,19 @@ const doc = {
   },
   host: 'ddcm.onrender.com',
   schemes: ['https'],
-  securityDefinitions: {
+  components: {
+  securitySchemes: {
     GitHubOAuth: {
       type: 'oauth2',
-      flow: 'authorizationCode',
+      flows: {
+        authorizationCode: {
       authorizationUrl: 'https://github.com/login/oauth/authorize',
       tokenUrl: 'https://github.com/login/oauth/access_token',
       scopes: {
         'user:email': 'Access your email address'
+      }
+      }
+      }
       }
     }
   }
