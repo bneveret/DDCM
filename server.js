@@ -14,7 +14,7 @@ const app = express();
 app
 .use(
   session({
-    secret: 'process.env.SESSION_SECRET',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
   })
@@ -25,11 +25,11 @@ app
   explorer: true,
   swaggerOptions: {
     oauth2RedirectUrl: "https://ddcm.onrender.com/auth/github/callback",
-    initOauth: {
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      appName: 'Dungeons and Dragons Campaign Manager'
-    }
+  },
+  initOauth: {
+    clientId: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    appName: 'Dungeons and Dragons Campaign Manager'
   }
 }))
 
@@ -42,6 +42,7 @@ app
     );
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
     next();
   })
 .use('/', require('./routes'));
