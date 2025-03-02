@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('./db/connect');
+const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
@@ -13,6 +14,15 @@ const port = process.env.PORT || 8080;
 const app = express();
 
 app
+.use(
+  cors({
+    origin: '*',
+    methods: 'GET, POST, PUT, DELETE, OPTIONS',
+    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+    credentials: true
+  })
+)
+
 .use(
   session({
     secret: process.env.SESSION_SECRET,
