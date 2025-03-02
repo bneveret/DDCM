@@ -6,6 +6,7 @@ const swaggerDocument = require('./swagger.json');
 
 const passport = require('passport');
 const session = require('express-session');
+const mongoStore = require('connect-mongo');
 require('./auth/github');
 
 const port = process.env.PORT || 8080;
@@ -16,7 +17,15 @@ app
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI,
+      dbName: 'dnd',
+      collectionName: 'sessions',
+      ttl: 1 * 1 * 20 * 60, // Expiration time for sessions (20 minutes)
+      autoRemove: 'native'
+    }),
+    cookie: { secure: true, httpOnly: true, sameSite: 'lax' }
   })
 )
 .use(passport.initialize())
@@ -51,7 +60,8 @@ mongodb.initDb((err) => {
     if (err) {
       console.log(err);
     } else {
-      app.listen(port);
-      console.log(`Connected to DB and listening on ${port}`);
+      app.listen(port, () => {
+        console.log(`Connected to DB and listening on ${port}`);
+      });
     }
 });
