@@ -18,7 +18,7 @@ app
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({
+    store: mongoStore.create({
       mongoUrl: process.env.MONGODB_URI,
       dbName: 'dnd',
       collectionName: 'sessions',
